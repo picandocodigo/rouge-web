@@ -1,13 +1,13 @@
 <html>
   <head>
-    <title>Source code visual enhancer</title>
+    <title>Source code highlighter</title>
   </head>
   <style>
    textarea { width: 80%; min-height: 20em }
    #preview { background-color:#000000; width: 80% }
   </style>
   <body>
-    <h1>Enriquecedor visual de Código fuente</h1>
+    <h1>Source code highlighter</h1>
 
     <form action="/" method="POST">
       <p><label for="code">Code</label></p>
@@ -29,7 +29,7 @@
           <% end %>
         </select>
       </p>
-      <button type="submit">Enviar</button>
+      <button type="submit">Submit</button>
     </form>
     <xmp>&nbsp;</xmp>
     <% if @parsed_code %>
