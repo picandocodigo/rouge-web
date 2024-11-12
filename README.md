@@ -9,3 +9,5 @@ This is a minimal web app to generate the HTML code for displaying source code w
 $ bundle install
 $ bundle exec ruby app.rb
 ```
+
+![image](https://github.com/user-attachments/assets/d684ea62-5944-40a0-8dfc-e7c0e15be6fc)
