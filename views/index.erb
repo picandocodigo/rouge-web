@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Source code visual enhancer</title>
+  </head>
+  <style>
+   textarea { width: 80%; min-height: 20em }
+   #preview { background-color:#000000; width: 80% }
+  </style>
+  <body>
+    <h1>Enriquecedor visual de Código fuente</h1>
+
+    <form action="/" method="POST">
+      <p><label for="code">Code</label></p>
+      <textarea name="code"><%= @code unless @code.nil? || @code.empty? %></textarea>
+      <p>
+        <select name="theme" id="theme">
+          <% THEMES.each do |theme| %>
+            <option value="<%= theme %>" <%= "selected='selected'" if theme == @theme %> >
+              <%= theme %>
+            </option>
+          <% end %>
+        </select>
+      </p>
+
+      <p>
+        <select name="language" id="language">
+          <% LANGS.each do |lang| %>
+            <option value="<%= lang[1] %>" <%= "selected='selected'" if lang[1] == @language %>><%= lang[0] %></option>
+          <% end %>
+        </select>
+      </p>
+      <button type="submit">Enviar</button>
+    </form>
+    <xmp>&nbsp;</xmp>
+    <% if @parsed_code %>
+      <div id="preview">
+        <pre><%= @parsed_code %></pre>
+      </div>
+      <textarea name="parsed_code"><%= @parsed_code %></textarea>
+    <% end %>
+  </body>
+</html>
