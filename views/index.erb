@@ -3,8 +3,8 @@
     <title>Source code highlighter</title>
   </head>
   <style>
-   textarea { width: 80%; min-height: 20em }
-   #preview { background-color:#000000; width: 80% }
+   textarea { width: 98%; min-height: 20em }
+   #preview { background-color: <%= @bgcolor %>; width: 98%; padding: 1em; }
   </style>
   <body>
     <h1>Source code highlighter</h1>
@@ -13,6 +13,7 @@
       <p><label for="code">Code</label></p>
       <textarea name="code"><%= @code unless @code.nil? || @code.empty? %></textarea>
       <p>
+        <label for="bgcolor">BG color:</label> <input type="text" name="bgcolor" value="<%= @bgcolor %>">
         <select name="theme" id="theme">
           <% THEMES.each do |theme| %>
             <option value="<%= theme %>" <%= "selected='selected'" if theme == @theme %> >
@@ -20,16 +21,13 @@
             </option>
           <% end %>
         </select>
-      </p>
-
-      <p>
         <select name="language" id="language">
           <% LANGS.each do |lang| %>
             <option value="<%= lang[1] %>" <%= "selected='selected'" if lang[1] == @language %>><%= lang[0] %></option>
           <% end %>
         </select>
+        <button type="submit">Submit</button>
       </p>
-      <button type="submit">Submit</button>
     </form>
     <xmp>&nbsp;</xmp>
     <% if @parsed_code %>

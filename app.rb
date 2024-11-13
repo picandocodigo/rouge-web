@@ -22,6 +22,7 @@ LANGS = Rouge::Lexer.all.sort_by(&:tag).map do |lexer|
 end
 
 get '/' do
+  @bgcolor = '#000000'
   erb :index
 end
 
@@ -29,6 +30,7 @@ post '/' do
   @theme = Object.const_get(params['theme'])
   @language = params['language']
   @code = params['code']
+  @bgcolor = params['bgcolor']
   formatter = Rouge::Formatters::HTMLInline.new(@theme)
   lexer = Rouge::Lexer.find(@language)
   @parsed_code = formatter.format(lexer.lex(@code))
