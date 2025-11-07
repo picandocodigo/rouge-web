@@ -28,16 +28,16 @@
       <textarea name="code"><%= @code unless @code.nil? || @code.empty? %></textarea>
       <p>
         <label for="bgcolor">BG color:</label> <input type="text" name="bgcolor" value="<%= @bgcolor %>">
+        <select name="language" id="language">
+          <% LANGS.each do |lang| %>
+            <option value="<%= lang[1] %>" <%= "selected='selected'" if lang[1] == @language %>><%= lang[0] %></option>
+          <% end %>
+        </select>
         <select name="theme" id="theme">
           <% THEMES.each do |theme| %>
             <option value="<%= theme %>" <%= "selected='selected'" if theme == @theme %> >
               <%= theme %>
             </option>
-          <% end %>
-        </select>
-        <select name="language" id="language">
-          <% LANGS.each do |lang| %>
-            <option value="<%= lang[1] %>" <%= "selected='selected'" if lang[1] == @language %>><%= lang[0] %></option>
           <% end %>
         </select>
         <button type="submit">Submit</button>
