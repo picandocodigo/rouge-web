@@ -7,9 +7,23 @@
    #preview { background-color: <%= @bgcolor %>; width: 98%; padding: 1em; }
   </style>
   <body>
+    <script type="text/javascript">
+     document.addEventListener("DOMContentLoaded", function(){
+       const languages = document.getElementById('language');
+       const themes = document.getElementById('theme');
+       const my_form = document.getElementById('my_form');
+
+       languages.addEventListener('change', function(){
+         my_form.submit();
+       });
+       themes.addEventListener('change', function(){
+         my_form.submit();
+       });
+     });
+    </script>
     <h1>Source code highlighter</h1>
 
-    <form action="/" method="POST">
+    <form action="/" method="POST" id="my_form">
       <p><label for="code">Code</label></p>
       <textarea name="code"><%= @code unless @code.nil? || @code.empty? %></textarea>
       <p>
