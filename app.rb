@@ -34,5 +34,26 @@ post '/' do
   formatter = Rouge::Formatters::HTMLInline.new(@theme)
   lexer = Rouge::Lexer.find(@language)
   @parsed_code = formatter.format(lexer.lex(@code))
+  replace_spaced(@parsed_code)
+  replace_background(@parsed_code)
+  @parsed_code = "<div class=\"codigo\">#{@parsed_code}</div>"
   erb :index
+end
+
+def replace_spaced(string)
+  string.gsub!("\t", '&nbsp;&nbsp;')
+  string.gsub!("\r", '')
+  regexp = /(\ {2,})/
+
+  return unless string.match(regexp)
+
+  count = string.match(regexp)[1].length
+  string.gsub!(regexp, '&nbsp;' * count)
+end
+
+def replace_background(string)
+  regexp = /background-color:\ #[0-9a-z]+/
+  return unless string.match(regexp)
+
+  string.gsub!(regexp, '')
 end
